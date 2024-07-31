@@ -39,6 +39,21 @@ public:
 		this->ElementNum = StackInput.ElementNum;
 		return *this;
 	};
+	~Stack() 
+	{
+		if(FirstElementPtr)
+		{
+			Element* LastElementPtr = FinalElementPtr->GetLastElementPtr();
+			delete FinalElementPtr;
+
+			while (LastElementPtr)
+			{
+				FinalElementPtr = LastElementPtr;
+				LastElementPtr = LastElementPtr->GetLastElementPtr();
+				delete FinalElementPtr;
+			}
+		}
+	}
 
 public:
 	class Element 
